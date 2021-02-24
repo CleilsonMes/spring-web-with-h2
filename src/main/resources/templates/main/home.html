@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- Chamando o head definido em layouts.html -->
+<head th:replace="layouts :: headeeeerrrr"></head>
+
+<!-- Chamando o menu definido em layouts.html -->
+<nav th:replace="layouts :: foooo"></nav>
+
+<body>
+<!-- Table ao lado da outra -->
+
+	<div class="container">
+		<h3>Main Dashboard</h3>
+		<hr>
+		<h4>Current Projects</h4>
+		<div class="row">
+			<div class="col-md-6">
+				 <table class="table table-bordered table-striped">
+					<thead class="thead-dark">
+						<tr>
+							<th>Project Name</th>
+							<th>Project Stage</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="obj : ${projects}">
+							<td th:text="${obj.name}" />
+							<td th:text="${obj.stage}" />
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<!-- Colocando JS na minha aplicação -->
+		
+			<div class="col-md-4">
+				<canvas id="myPieChart" height="5" width="5"> </canvas>
+				
+				<script>
+					var chartData = "[[${projectStatusCnt}]]"
+				</script>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="container">
+		<h4>Current Employees and Example Chart</h4>
+		<div class="row">
+			<div class="col-md-6">
+				 <table class="table table-bordered table-striped">
+					<thead class="thead-dark">
+						<tr>
+							<th>First Name</th>
+							<th>Last Stage</th>
+							<th>Email</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="obj : ${employees}">
+							<td th:text="${obj.firstName}" />
+							<td th:text="${obj.lastName}" />
+							<td th:text="${obj.email}" />
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<!-- Colocando JS na minha aplicação -->
+		
+			<div class="col-md-4">
+				<canvas id="myPieChartEx" height="5" width="5"> </canvas>
+			</div>
+			
+		</div>
+	</div>
+
+	<div class="container">
+		<h4>Current Employees and Projects Count</h4>
+		<div class="row">
+			<div class="col-md-6">
+				 <table class="table table-bordered table-striped">
+					<thead class="thead-dark">
+						<tr>
+							<th>First Name</th>
+							<th>Last Stage</th>
+							<th>Project Count</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="obj : ${empProjCount}">
+							<td th:text="${obj.firstName}" />
+							<td th:text="${obj.lastName}" />
+							<td th:text="${obj.ProjectCount}" />
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+<!--  Table uma abaixo da outra 
+
+	<div class="container">
+		<div>
+			<h3>Current Projects</h3>
+			 <table class="table table-bordered table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>Project Name</th>
+						<th>Project Stage</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="obj : ${projects}">
+						<td th:text="${obj.name}" />
+						<td th:text="${obj.stage}" />
+					</tr>
+				</tbody>
+			</table>
+			<hr>
+		</div>
+
+		<div>
+			<h3>Current Employees</h3>
+			 <table class="table table-bordered table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>First Name</th>
+						<th>Last Stage</th>
+						<th>Email</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="obj : ${employees}">
+						<td th:text="${obj.firstName}" />
+						<td th:text="${obj.lastName}" />
+						<td th:text="${obj.email}" />
+					</tr>
+				</tbody>
+			</table>
+			<hr>
+		</div>
+
+		<!-- Colocando JS na minha aplicação 
+		
+		<div class="col-md-4">
+			<canvas id="myPieChart" > </canvas>
+		</div>
+		<hr>
+		
+	</div>
+-->		
+	
+	<!-- Colocando JS na minha aplicação -->
+	<script type="text/javascript" th:src="@{js/myChart.js}"></script>
+	
+</body>
+
+</html>
